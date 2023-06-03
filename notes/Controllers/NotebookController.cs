@@ -11,19 +11,33 @@ namespace notes.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             return View();
         }
 
-        public async Task<IActionResult> Edit()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Note note)
         {
             return View();
         }
 
-        public async Task<IActionResult> Delete()
+        public async Task<IActionResult> Edit(int id)
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Edit(Note note)
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Delete(int id)
         {
             return View();
         }
     }
 }
+
