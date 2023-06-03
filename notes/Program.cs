@@ -6,7 +6,7 @@ namespace notes
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -32,14 +32,13 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("NotesContext")))
             {
                 app.UseDeveloperExceptionPage();
             }
-            /*
+
             using (var scope = app.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<NotesContext>();
-                context.Database.EnsureCreated();
                 await DbInitializer.Initialize(context);
-            }*/
+            }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

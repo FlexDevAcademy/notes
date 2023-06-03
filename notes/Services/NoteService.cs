@@ -14,9 +14,13 @@ namespace notes.Services
             _context = context;
         }
 
-        public Task Add(Note note)
+        public async Task Add(Note note)
         {
-            throw new NotImplementedException();
+            await _context.Notes.AddAsync(note);
+            await _context.SaveChangesAsync();
+            
+
+
         }
 
         public Task Delete(int id)
