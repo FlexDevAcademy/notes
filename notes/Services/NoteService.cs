@@ -17,10 +17,9 @@ namespace notes.Services
         public async Task Add(Note note)
         {
             await _context.Notes.AddAsync(note);
+            note.Id = _context.Notes.Max(r => r.Id) + 1;
             await _context.SaveChangesAsync();
-            
-
-
+           
         }
 
         public Task Delete(int id)

@@ -14,12 +14,20 @@ namespace notes
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddDbContext<NotesContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("NotesContext")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("NotesContext")), ServiceLifetime.Transient);
 
             builder.Services.AddTransient<INoteService, NoteService>();
 
 
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<NotesContext>();
+
+                DbInitializer.Initialize(context);
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -33,12 +41,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("NotesContext")))
                 app.UseDeveloperExceptionPage();
             }
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<NotesContext>();
-                await DbInitializer.Initialize(context);
-            }
+            
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

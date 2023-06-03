@@ -4,14 +4,30 @@ namespace notes.Data
 {
     public class DbInitializer
     {
-        public static async Task Initialize(NotesContext context)
+        public static void Initialize(NotesContext context)
         {
-
             context.Database.EnsureCreated();
+
             if (context.Notes.Any())
             {
                 return;
             }
+
+            var notes = new Note[]
+            {
+                new Note { Id=1, Title = "title1", Description= "Forni Rossi", Created=DateTime.Now, DateOfEdition=DateTime.Now}
+                
+            };
+
+            foreach(var x in notes)
+            {
+                //context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Notes ON");
+                context.Notes.Add(x);
+
+            }
+
+            context.SaveChanges();
+            //context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Notes OFF");
 
 
         }
