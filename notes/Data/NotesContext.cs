@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
+using Microsoft.EntityFrameworkCore;
 using notes.Models;
 
 namespace notes.Data
@@ -12,8 +14,15 @@ namespace notes.Data
 
         public DbSet<Note>Notes { get; set; }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Note>(entity =>
+            {
+                entity.HasKey(n => n.Id);
+                entity.Property(n => n.Id).HasColumnName("Id").HasComment("PrimaryKey");
+            });
             base.OnModelCreating(modelBuilder);
         }
     }
