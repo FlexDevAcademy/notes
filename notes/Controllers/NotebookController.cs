@@ -16,7 +16,9 @@ namespace notes.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await _db.GetAll();
+
+            return View(model);
         }
 
         [HttpGet]
@@ -38,19 +40,61 @@ namespace notes.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            return View();
-        }
+            var model = await _db.Get(id);
 
+            return View(model);
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Note note)
         {
-            return View();
-        }
+            if (ModelState.IsValid)
+            {
+                await _db.Update(note);
 
+                return RedirectToAction("Index");
+            }
+
+            return View(note);
+        }
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            return View();
+
+            var model = await _db.Get(id);
+
+            if (model == null)
+            {
+                return View("NotFound");
+            }
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id, IFormCollection form)
+        {
+            await _db.Delete(id);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Details(int id)
+        {
+            var model = await _db.Get(id);
+
+            if (model == null)
+            {
+                return View("NotFound");
+            }
+
+            return View(model);
+
         }
     }
 }

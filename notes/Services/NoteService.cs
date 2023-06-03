@@ -22,9 +22,14 @@ namespace notes.Services
            
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var note = await Get(id);
+            if (note != null)
+            {
+                _context.Notes.Remove(note);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<Note> Get(int id)
@@ -37,9 +42,17 @@ namespace notes.Services
             return await _context.Notes.OrderBy(x => x.DateOfEdition).ToListAsync();
         }
 
-        public Task Update(Note note)
+        public async Task Update(Note note)
         {
-            throw new NotImplementedException();
+            var existingNote = await Get(note.Id);
+
+            if (existingNote != null)
+            {
+                existingNote.Title = note.Title;
+                existingNote.Description = note.Description;
+                existingNote.DateOfEdition = DateTime.Now;
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
