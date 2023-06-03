@@ -42,9 +42,17 @@ namespace notes.Services
             return await _context.Notes.OrderBy(x => x.DateOfEdition).ToListAsync();
         }
 
-        public Task Update(Note note)
+        public async Task Update(Note note)
         {
-            throw new NotImplementedException();
+            var existingNote = await Get(note.Id);
+
+            if (existingNote != null)
+            {
+                existingNote.Title = note.Title;
+                existingNote.Description = note.Description;
+                existingNote.DateOfEdition = DateTime.Now;
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
