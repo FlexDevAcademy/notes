@@ -49,10 +49,26 @@ namespace notes.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            return View();
+
+            var model = await _db.Get(id);
+
+            if (model == null)
+            {
+                return View("NotFound");
+            }
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id, IFormCollection form)
+        {
+            await _db.Delete(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

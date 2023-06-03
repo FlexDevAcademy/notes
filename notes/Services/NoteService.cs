@@ -22,9 +22,14 @@ namespace notes.Services
            
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var note = await Get(id);
+            if (note != null)
+            {
+                _context.Notes.Remove(note);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<Note> Get(int id)
