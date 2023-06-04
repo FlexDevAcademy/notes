@@ -5,32 +5,73 @@ html {
 @media (min-width: 768px) {
   html {
     font-size: 16px;
-  }
+     }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+   
 }
 
 body {
     margin-bottom: 60px;
-    background-image: url('https://img.freepik.com/premium-zdjecie/liscie-paproci-pioro-i-puste-spiralne-notatnik-na-turkus-tlo-teksturowane_23-2147916354.jpg?w=2000');
-    /*background-image: url('../foto/liscie-paproci-pioro-i-puste-spiralne-notatnik-na-turkus-tlo-teksturowane_23-2147916354.jpg');*/
-    background-size: cover;
     font-family: Arial;
     font-size: 26px;
+    background-image: url('https://img.freepik.com/premium-zdjecie/liscie-paproci-pioro-i-puste-spiralne-notatnik-na-turkus-tlo-teksturowane_23-2147916354.jpg?w=2000');
+    background-size: cover;
+    }
+
+.background-image {
+    background-color: rgba(0, 0, 0, 0.5);
+
 }
 
 .note {
     border: 2px solid grey;
-    border-radius: 25px;
-    font-size: 20px;
-    background: #7f7f7f;
+    border-radius: 10px;
+    font-size: 16px;
     background: rgba(255,255,255,0.5);
 }
-
 table {
     border-collapse: separate;
-    border-spacing: 0 5px;
+    border-spacing: 0 2px;
+}
+.notes {
+    border: 2px solid grey;
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.details {
+    border: 2px solid grey;
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    background:rgba(255,255,255,0.5);
+}
+
+#text {
+    padding: 10px;
+}
+
+#details-btns {
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+h2 {
+    text-align: center;
+    background: rgba(255,255,255,0.8);
+}
+
+.copyfoot {
+    font-family: Arial;
+    font-size: 20px;
+    color: black;
+
 }
