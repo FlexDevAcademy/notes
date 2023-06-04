@@ -17,7 +17,9 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Title, new {htmlAttributes = new { @class ="form-control"}})
 
+
                 @Html.ValidationMessageFor(model => model.Title, "", new {@class = "text-danger"})
+
 
             </div>
 
@@ -41,9 +43,5 @@
         </div>
 
     </div>
-
-       
-
 }
-
-            @Html.ActionLink("Back to list", "Index")
+@Html.ActionLink("Back to List", "Index",null,null, new { @class = "btn btn-success btn-large" })
