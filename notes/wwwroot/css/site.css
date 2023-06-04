@@ -5,14 +5,29 @@ html {
 @media (min-width: 768px) {
   html {
     font-size: 16px;
-  }
+     }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+   
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: Arial;
+    font-size: 26px;
+    background-image: url('https://img.freepik.com/premium-zdjecie/liscie-paproci-pioro-i-puste-spiralne-notatnik-na-turkus-tlo-teksturowane_23-2147916354.jpg?w=2000');
+    background-size: cover;
+    }
+
+.background-image {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.note {
+    border: 2px solid grey;
+    border-radius: 10px;
+    font-size: 16px;
 }
