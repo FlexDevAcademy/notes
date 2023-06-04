@@ -15,19 +15,18 @@ namespace notes.Data
 
             var notes = new Note[]
             {
-                new Note { Id=1, Title = "title1", Description= "Forni Rossi", Created=DateTime.Now, DateOfEdition=DateTime.Now}
+                new Note { Title = "title1", Description= "Forni Rossi", Created=DateTime.Now, DateOfEdition=DateTime.Now}
                 
             };
-
-            foreach(var x in notes)
+            context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Notes ON");
+            foreach (var x in notes)
             {
-                //context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Notes ON");
                 context.Notes.Add(x);
 
             }
 
             context.SaveChanges();
-            //context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Notes OFF");
+            context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Notes OFF");
 
 
         }
