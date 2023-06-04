@@ -17,7 +17,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Title, new {htmlAttributes = new { @class ="form-control"}})
 
-                @Html.ValidationMessageFor(model => model.Title, "Write Title", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.Title,"", new {@class = "text-danger"})
 
             </div>
 
@@ -29,7 +29,7 @@
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.Description, new {htmlAttributes = new { @class ="form-control"}})
 
-                @Html.ValidationMessageFor(model => model.Description, "Write Description", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
 
             </div>
 
