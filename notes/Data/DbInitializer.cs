@@ -15,7 +15,7 @@ namespace notes.Data
 
             var notes = new Note[]
             {
-                new Note { Id=1, Title = "title1", Description= "Forni Rossi", Created=DateTime.Now, DateOfEdition=DateTime.Now}
+                new Note {Title = "title1", Description= "Forni Rossi", Created=DateTime.Now, DateOfEdition=DateTime.Now}
                 
             };
 

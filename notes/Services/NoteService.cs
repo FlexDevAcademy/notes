@@ -16,10 +16,13 @@ namespace notes.Services
 
         public async Task Add(Note note)
         {
+            _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Notes ON");
+
             await _context.Notes.AddAsync(note);
-            note.Id = _context.Notes.Max(r => r.Id) + 1;
+            //note.Id = _context.Notes.Max(r => r.Id) + 1;
             await _context.SaveChangesAsync();
-           
+
+            _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Notes OFF");
         }
 
         public async Task Delete(int id)
