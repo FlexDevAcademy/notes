@@ -42,5 +42,32 @@ namespace Notes.Test
 
 
         }
+
+        [Test]
+
+        public async Task TestDeleteViewData()
+        {
+            //arange
+
+            var controller = new NotebookController(_noteService);
+
+            var notes = new Note[]
+            {
+                new Note { Id = 1, Title = "First Note", Description = "First Description", Created = DateTime.Now, DateOfEdition = DateTime.Now },
+
+                new Note { Id = 2, Title = "First Note", Description = "First Description", Created = DateTime.Now, DateOfEdition = DateTime.Now },
+            };
+
+            await _noteService.Delete(1);
+
+            //Act
+
+            var result = await controller.Details(1) as ViewResult;
+
+
+            // Assert
+            Assert.AreEqual(result.Model, notes[0]);
+
+        }
     }
 }
