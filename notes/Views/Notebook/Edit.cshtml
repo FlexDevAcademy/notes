@@ -11,6 +11,11 @@
 {
     @Html.AntiForgeryToken()
 
+    <table class="table mb-4 w-auto" >
+        <tr class="note">
+
+            <td>
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         <div>
@@ -43,6 +48,9 @@
 
     </div>
 
+            </td>
+        </tr>
+    </table>
 
 
 }
